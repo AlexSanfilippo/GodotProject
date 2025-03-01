@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://dunpwvsmqjru7"]
+
+[ext_resource type="Script" path="res://asteroid.gd" id="1_72ad5"]
+[ext_resource type="Texture2D" uid="uid://bilio4g7iit68" path="res://Asteroid1.png" id="1_yitte"]
+[ext_resource type="Texture2D" uid="uid://cw8lhrklbpofk" path="res://Asteroid1_1.png" id="2_ysu1a"]
+[ext_resource type="Texture2D" uid="uid://dx507mx3eb28s" path="res://Asteroid1_2.png" id="3_2mwv8"]
+[ext_resource type="Texture2D" uid="uid://c01w1rpopxpbh" path="res://Asteroid1_death_1.png" id="3_d7xmt"]
+[ext_resource type="Texture2D" uid="uid://bnodmsh1rm3hi" path="res://Asteroid1_3.png" id="4_37dwk"]
+[ext_resource type="Texture2D" uid="uid://113tv46poy8r" path="res://Asteroid1_death_2.png" id="4_tjqw6"]
+[ext_resource type="Texture2D" uid="uid://cjhivrnfy80gv" path="res://Asteroid1_death_3.png" id="5_55tok"]
+[ext_resource type="Texture2D" uid="uid://bvqye3mfl4h2g" path="res://Asteroid1_death_4.png" id="6_gbn8u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvi2h"]
+animations = [{
+"frames": [{
+"duration": 0.25,
+"texture": ExtResource("1_yitte")
+}, {
+"duration": 0.25,
+"texture": ExtResource("3_d7xmt")
+}, {
+"duration": 0.25,
+"texture": ExtResource("4_tjqw6")
+}, {
+"duration": 0.25,
+"texture": ExtResource("5_55tok")
+}, {
+"duration": 0.25,
+"texture": ExtResource("6_gbn8u")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yitte")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ysu1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2mwv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_37dwk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s6cmx"]
+radius = 7.0
+
+[node name="Asteroid" type="Node2D"]
+position = Vector2(519, 54)
+script = ExtResource("1_72ad5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_yvi2h")
+animation = &"death"
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+shape = SubResource("CircleShape2D_s6cmx")
+
+[connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_area_entered"]

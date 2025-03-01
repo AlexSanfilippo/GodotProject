@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=3 uid="uid://cej82vvfk3bf3"]
+
+[ext_resource type="Shader" path="res://pngsprite.gdshader" id="1_j582c"]
+[ext_resource type="Script" path="res://player_ship.gd" id="2_5qmfs"]
+[ext_resource type="Texture2D" uid="uid://8ehpi80i5kwo" path="res://SimpleShip.png" id="2_y5sun"]
+[ext_resource type="Texture2D" uid="uid://bylwau05rtjb3" path="res://SimpleShip2.png" id="3_ewrg2"]
+[ext_resource type="Texture2D" uid="uid://cv76g8qkfyyu0" path="res://SimpleShip3.png" id="4_d7ini"]
+[ext_resource type="Texture2D" uid="uid://2llwd1evmco5" path="res://SimpleShip_death_1.png" id="4_xjt0h"]
+[ext_resource type="Texture2D" uid="uid://c8w7jmfy10aap" path="res://SimpleShip_death_2.png" id="5_7quja"]
+[ext_resource type="Texture2D" uid="uid://il0c45dkfs6a" path="res://SimpleShip_death_3.png" id="6_6gho0"]
+[ext_resource type="Texture2D" uid="uid://mn04ejnu8rg0" path="res://SimpleShip_death_4.png" id="7_vva8b"]
+[ext_resource type="Texture2D" uid="uid://dr0ttqxaddar2" path="res://SimpleShip_death_5.png" id="8_4qp5a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_igqtr"]
+shader = ExtResource("1_j582c")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_huv2e"]
+shader = ExtResource("1_j582c")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cn08v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y5sun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xjt0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7quja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6gho0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vva8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4qp5a")
+}],
+"loop": false,
+"name": &"death",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y5sun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ewrg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d7ini")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ewrg2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="Node2D"]
+material = SubResource("ShaderMaterial_igqtr")
+script = ExtResource("2_5qmfs")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+material = SubResource("ShaderMaterial_huv2e")
+position = Vector2(1.99997, 5)
+scale = Vector2(8.548, 8)
+sprite_frames = SubResource("SpriteFrames_cn08v")
+animation = &"death"
+speed_scale = 0.5
+centered = false
+
+[node name="Area2D" type="Area2D" parent="PlayerSprite"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSprite/Area2D"]
+polygon = PackedVector2Array(7.01919, 0, 7.01919, 2, 5.96631, 2, 5.96631, 10, 3.97754, 10, 3.97754, 16, 5.96631, 16, 6.0833, 11, 9.00796, 11, 9.00796, 16, 10.9967, 16, 10.9967, 10, 9.00796, 10, 9.00796, 2, 7.95508, 2, 7.95508, 0)
+
+[connection signal="area_entered" from="PlayerSprite/Area2D" to="." method="_on_area_2d_area_entered"]

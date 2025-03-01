@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcn1g6xdmb1m5"]
+
+[ext_resource type="Texture2D" uid="uid://bvapjgpyi0v7p" path="res://EnemyShip1.png" id="1_ima8i"]
+[ext_resource type="Texture2D" uid="uid://csv2kuxxp1ltc" path="res://EnemyShip1_2.png" id="2_t1toc"]
+[ext_resource type="Texture2D" uid="uid://ds3bawtcmd0vu" path="res://EnemyShip1_3.png" id="3_wnxfm"]
+[ext_resource type="Texture2D" uid="uid://bdq5h0os7jovy" path="res://EnemyShip1_4.png" id="4_ds5x3"]
+[ext_resource type="Texture2D" uid="uid://cjdh0gbudh6ab" path="res://EnemyShip1_5.png" id="5_117ls"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1d6xa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ima8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_t1toc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wnxfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ds5x3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_117ls")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyShip" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1d6xa")
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/Area2D"]
