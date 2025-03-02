@@ -1,0 +1,10 @@
+res://enemy_ship.gd
+res://enemy_ship.tscn
+res://pngsprite.gdshader
+res://main.tscn
+res://main.gd
+res://PlayerShip.tscn
+res://plasma.tscn
+res://asteroid.tscn
+res://hud.tscn
+res://hud.gd

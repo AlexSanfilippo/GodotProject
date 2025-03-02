@@ -1,0 +1,11 @@
+Label
+CanvasLayer
+TextureProgressBar
+Timer
+Path2D
+Area2D
+CollisionPolygon2D
+CollisionShape2D
+AnimatedSprite2D
+Node2D
+StaticBody2D

@@ -1,14 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwxtxyl8ctugx"]
+[gd_scene load_steps=7 format=3 uid="uid://dwxtxyl8ctugx"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_34y2n"]
 [ext_resource type="PackedScene" uid="uid://cej82vvfk3bf3" path="res://PlayerShip.tscn" id="1_bf1vd"]
 [ext_resource type="PackedScene" uid="uid://dlcpkdnfb8lo6" path="res://plasma.tscn" id="2_l3qjx"]
 [ext_resource type="PackedScene" uid="uid://dunpwvsmqjru7" path="res://asteroid.tscn" id="4_2rt80"]
+[ext_resource type="PackedScene" uid="uid://dcn1g6xdmb1m5" path="res://enemy_ship.tscn" id="4_v7gu3"]
+[ext_resource type="PackedScene" uid="uid://kw771weu433k" path="res://hud.tscn" id="6_7slkl"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_34y2n")
 plasma_scene = ExtResource("2_l3qjx")
 asteroid_scene = ExtResource("4_2rt80")
+enemy_ship1_scene = ExtResource("4_v7gu3")
 
 [node name="Player" parent="." instance=ExtResource("1_bf1vd")]
 position = Vector2(469, 494)
@@ -18,8 +21,16 @@ position = Vector2(469, 494)
 [node name="Asteroid" parent="." instance=ExtResource("4_2rt80")]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 5.0
 autostart = true
+
+[node name="ShieldBar" type="TextureProgressBar" parent="."]
+offset_left = 9.0
+offset_top = 11.0
+offset_right = 49.0
+offset_bottom = 51.0
+
+[node name="HUD" parent="." instance=ExtResource("6_7slkl")]
 
 [connection signal="fired" from="Player" to="." method="_on_player_fired"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

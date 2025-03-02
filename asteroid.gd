@@ -21,13 +21,7 @@ func _do_movement():
 		
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("asteroid was hit!")
-	
-	#todo: asteroid should not die on collision with one another.
 	
 	$AnimatedSprite2D.play("death")
 	alive = false
-	#$AnimatedSprite2D/Area2D.monitoring = false
-	#$AnimatedSprite2D/Area2D.monitorable = false
-	#$AnimatedSprite2D.hide()
 	

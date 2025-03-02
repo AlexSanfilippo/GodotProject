@@ -64,7 +64,8 @@ sprite_frames = SubResource("SpriteFrames_yvi2h")
 animation = &"death"
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
-collision_layer = 2
+collision_layer = 4
+collision_mask = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 shape = SubResource("CircleShape2D_s6cmx")

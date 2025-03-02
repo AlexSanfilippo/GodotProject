@@ -1,13 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcn1g6xdmb1m5"]
+[gd_scene load_steps=13 format=3 uid="uid://dcn1g6xdmb1m5"]
 
 [ext_resource type="Texture2D" uid="uid://bvapjgpyi0v7p" path="res://EnemyShip1.png" id="1_ima8i"]
+[ext_resource type="Script" path="res://enemy_ship.gd" id="1_kgi0t"]
+[ext_resource type="Texture2D" uid="uid://c01w1rpopxpbh" path="res://Asteroid1_death_1.png" id="2_4joy4"]
+[ext_resource type="PackedScene" uid="uid://dlcpkdnfb8lo6" path="res://plasma.tscn" id="2_57x06"]
 [ext_resource type="Texture2D" uid="uid://csv2kuxxp1ltc" path="res://EnemyShip1_2.png" id="2_t1toc"]
+[ext_resource type="Texture2D" uid="uid://113tv46poy8r" path="res://Asteroid1_death_2.png" id="3_ui5ya"]
 [ext_resource type="Texture2D" uid="uid://ds3bawtcmd0vu" path="res://EnemyShip1_3.png" id="3_wnxfm"]
 [ext_resource type="Texture2D" uid="uid://bdq5h0os7jovy" path="res://EnemyShip1_4.png" id="4_ds5x3"]
+[ext_resource type="Texture2D" uid="uid://cjhivrnfy80gv" path="res://Asteroid1_death_3.png" id="4_xa1n6"]
 [ext_resource type="Texture2D" uid="uid://cjdh0gbudh6ab" path="res://EnemyShip1_5.png" id="5_117ls"]
+[ext_resource type="Texture2D" uid="uid://bvqye3mfl4h2g" path="res://Asteroid1_death_4.png" id="5_bamr2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1d6xa"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4joy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ui5ya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xa1n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bamr2")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_ima8i")
@@ -30,10 +53,27 @@ animations = [{
 }]
 
 [node name="EnemyShip" type="Node2D"]
+position = Vector2(13, 16)
+rotation = 3.14159
+script = ExtResource("1_kgi0t")
+plasma_scene = ExtResource("2_57x06")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_1d6xa")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 2
+collision_mask = 17
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/Area2D"]
+visible = false
+polygon = PackedVector2Array(1, -7, -2, -7, -2, -6, -3, -6, -3, -5, -4, -5, -4, -3, -5, -3, -5, 3, -6, 3, -6, 7, -5, 7, -5, 8, 4, 8, 4, 7, 5, 7, 5, 3, 4, 3, 4, -3, 3, -3, 3, -5, 2, -5, 2, -6, 1, -6)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

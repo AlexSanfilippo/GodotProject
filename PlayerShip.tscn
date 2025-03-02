@@ -69,15 +69,14 @@ texture_filter = 1
 texture_repeat = 1
 material = SubResource("ShaderMaterial_huv2e")
 position = Vector2(1.99997, 5)
-scale = Vector2(8.548, 8)
+scale = Vector2(5.343, 5)
 sprite_frames = SubResource("SpriteFrames_cn08v")
 animation = &"death"
 speed_scale = 0.5
 centered = false
 
 [node name="Area2D" type="Area2D" parent="PlayerSprite"]
-collision_layer = 2
-collision_mask = 2
+collision_mask = 14
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSprite/Area2D"]
 polygon = PackedVector2Array(7.01919, 0, 7.01919, 2, 5.96631, 2, 5.96631, 10, 3.97754, 10, 3.97754, 16, 5.96631, 16, 6.0833, 11, 9.00796, 11, 9.00796, 16, 10.9967, 16, 10.9967, 10, 9.00796, 10, 9.00796, 2, 7.95508, 2, 7.95508, 0)
