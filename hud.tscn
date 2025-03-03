@@ -8,4 +8,4 @@ script = ExtResource("1_u0toe")
 [node name="Cash" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Cash"
+text = "Credits"

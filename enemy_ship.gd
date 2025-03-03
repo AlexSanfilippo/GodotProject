@@ -13,6 +13,7 @@ var cash_reward = 0
 func _ready() -> void:
 	move_state = "descend"
 	cash_reward = 50
+	$Timer.wait_time = randf_range(1.0, 2.5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
