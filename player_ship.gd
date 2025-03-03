@@ -3,6 +3,7 @@ extends Node2D
 
 #create a signal for when the shoots a shot
 signal fired
+signal died
 
 var alive = true
 var velocity = Vector2.ZERO
@@ -78,7 +79,7 @@ func _process(delta: float) -> void:
 		
 func _player_death():
 	alive = false
-	print("ship hit!")
+	emit_signal("died")
 	$PlayerSprite.play("death")
 
 

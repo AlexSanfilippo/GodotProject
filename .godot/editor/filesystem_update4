@@ -8,3 +8,4 @@ res://hud.tscn
 res://main.gd
 res://hud.gd
 res://enemy_ship.gd
+res://player_ship.gd
